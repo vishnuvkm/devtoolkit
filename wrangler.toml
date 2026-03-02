@@ -1,0 +1,5 @@
+name = "devtools-kit"
+compatibility_date = "2025-01-01"
+
+# Serve the Next.js static export as static assets
+assets = { directory = "./out" }
