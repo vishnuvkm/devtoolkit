@@ -192,6 +192,19 @@ export const tools: Tool[] = [
     targetKeyword: "hex to rgb converter",
     relatedTools: ["json-yaml", "url-parser", "base64"],
   },
+  {
+    slug: "docker-compose-validator",
+    name: "Docker Compose Validator",
+    description:
+      "Validate Docker Compose YAML files. Check structure, required fields, and flag common errors.",
+    longDescription:
+      "Paste a Docker Compose file to validate its structure — service definitions, port formats, volume mounts, depends_on references, and more. Instant feedback with line-level error details.",
+    category: "devops",
+    wave: 3,
+    icon: "Container",
+    targetKeyword: "docker compose validator",
+    relatedTools: ["json-yaml", "chmod-calculator", "cron-generator"],
+  },
 ];
 
 export const toolsBySlug: Record<string, Tool> = Object.fromEntries(

@@ -71,7 +71,7 @@ Deployment:      Cloudflare Pages (static export via `output: 'export'`)
 Package Manager: pnpm
 Analytics:       Cloudflare Web Analytics ✅ (script in layout.tsx, token via NEXT_PUBLIC_CF_ANALYTICS_TOKEN)
 Ads:             Carbon Ads → EthicalAds (developer-focused, non-intrusive)
-Testing:         Vitest ✅ (142 tests across 11 test files)
+Testing:         Vitest ✅ (195 tests across 14 test files)
 ```
 
 ### Why Next.js with Static Export?
@@ -367,11 +367,11 @@ No CI/CD setup needed — Cloudflare Pages has built-in Git integration. Connect
 - [x] Add PWA support — manifest.json, sw.js (stale-while-revalidate), icon.svg, PWARegister component
 
 ### Week 9–10: Wave 3 Tools
-- [ ] HTTP Status Code Reference
-- [ ] Subnet Calculator
-- [ ] Color Converter
-- [ ] Docker Compose Validator
-- [ ] SSL Checker (first Cloudflare Worker backend)
+- [x] HTTP Status Code Reference — searchable, accordion-style, 5-category filter
+- [x] Subnet Calculator — full CIDR math, binary mask, visual bit-split bar
+- [x] Color Converter — HEX/RGB/HSL/Tailwind, live preview, RGB sliders, color picker
+- [x] Docker Compose Validator — js-yaml parse + structural validation (services, ports, depends_on, restart, env, volumes)
+- [ ] SSL Checker (first Cloudflare Worker backend — deferred, requires server-side)
 
 ### Week 11–12: Growth Systems
 - [ ] Apply for Carbon Ads (if 10K+ pageviews reached)
