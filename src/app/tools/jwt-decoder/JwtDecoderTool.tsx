@@ -3,17 +3,10 @@
 import { useState, useMemo } from "react";
 import CopyButton from "@/components/CopyButton";
 import { AlertCircle, CheckCircle, Clock, XCircle } from "lucide-react";
+import { decodeJwt } from "@/lib/jwt-utils";
 
 const SAMPLE_JWT =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
-
-function base64UrlDecode(str: string): string {
-  // Pad to multiple of 4
-  str = str.replace(/-/g, "+").replace(/_/g, "/");
-  const pad = str.length % 4;
-  if (pad) str += "=".repeat(4 - pad);
-  return atob(str);
-}
 
 function formatDate(ts: number): string {
   return new Date(ts * 1000).toLocaleString("en-US", {
@@ -37,40 +30,10 @@ function timeAgo(ts: number): string {
   return `${Math.floor(Math.abs(diff) / 86400)}d ago`;
 }
 
-interface DecodedJwt {
-  header: Record<string, unknown>;
-  payload: Record<string, unknown>;
-  signature: string;
-  isExpired: boolean | null;
-}
-
 export default function JwtDecoderTool() {
   const [token, setToken] = useState(SAMPLE_JWT);
 
-  const decoded = useMemo<{
-    result: DecodedJwt | null;
-    error: string | null;
-  }>(() => {
-    if (!token.trim()) return { result: null, error: null };
-    const parts = token.trim().split(".");
-    if (parts.length !== 3)
-      return { result: null, error: "Invalid JWT: must have 3 parts (header.payload.signature)" };
-    try {
-      const header = JSON.parse(base64UrlDecode(parts[0]));
-      const payload = JSON.parse(base64UrlDecode(parts[1]));
-      const isExpired =
-        "exp" in payload ? Date.now() / 1000 > (payload.exp as number) : null;
-      return {
-        result: { header, payload, signature: parts[2], isExpired },
-        error: null,
-      };
-    } catch (e) {
-      return {
-        result: null,
-        error: e instanceof Error ? e.message : "Failed to decode JWT",
-      };
-    }
-  }, [token]);
+  const decoded = useMemo(() => decodeJwt(token), [token]);
 
   const { result, error } = decoded;
 

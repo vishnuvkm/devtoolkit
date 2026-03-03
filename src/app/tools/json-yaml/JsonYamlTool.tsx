@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import yaml from "js-yaml";
 import CopyButton from "@/components/CopyButton";
 import { ArrowLeftRight, AlertCircle } from "lucide-react";
+import { jsonToYaml, yamlToJson } from "@/lib/json-yaml-utils";
 
 type Direction = "json-to-yaml" | "yaml-to-json";
 
@@ -32,17 +32,7 @@ export default function JsonYamlTool() {
 
   const { output, error } = useMemo(() => {
     if (!input.trim()) return { output: "", error: null };
-    try {
-      if (direction === "json-to-yaml") {
-        const parsed = JSON.parse(input);
-        return { output: yaml.dump(parsed, { indent: 2, lineWidth: -1 }), error: null };
-      } else {
-        const parsed = yaml.load(input);
-        return { output: JSON.stringify(parsed, null, 2), error: null };
-      }
-    } catch (e) {
-      return { output: "", error: e instanceof Error ? e.message : "Parse error" };
-    }
+    return direction === "json-to-yaml" ? jsonToYaml(input) : yamlToJson(input);
   }, [input, direction]);
 
   const swap = () => {

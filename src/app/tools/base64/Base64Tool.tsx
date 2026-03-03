@@ -3,28 +3,9 @@
 import { useState, useRef, useMemo } from "react";
 import CopyButton from "@/components/CopyButton";
 import { Upload, AlertCircle, ArrowLeftRight } from "lucide-react";
+import { toBase64, fromBase64 } from "@/lib/base64-utils";
 
 type Mode = "encode" | "decode";
-
-function toBase64(text: string, urlSafe: boolean): string {
-  const encoded = btoa(unescape(encodeURIComponent(text)));
-  return urlSafe
-    ? encoded.replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "")
-    : encoded;
-}
-
-function fromBase64(b64: string): string {
-  // Restore standard Base64 from URL-safe
-  const normalized = b64.replace(/-/g, "+").replace(/_/g, "/");
-  const pad = normalized.length % 4;
-  const padded = pad ? normalized + "=".repeat(4 - pad) : normalized;
-  try {
-    return decodeURIComponent(escape(atob(padded)));
-  } catch {
-    // Binary fallback (non-UTF-8)
-    return atob(padded);
-  }
-}
 
 export default function Base64Tool() {
   const [mode, setMode] = useState<Mode>("encode");

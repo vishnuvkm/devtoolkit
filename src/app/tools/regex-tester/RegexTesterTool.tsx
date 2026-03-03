@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import CopyButton from "@/components/CopyButton";
 import { AlertCircle } from "lucide-react";
+import { findMatches } from "@/lib/regex-utils";
 
 const CHEAT_SHEET = [
   { pattern: ".", desc: "Any character except newline" },
@@ -51,50 +52,27 @@ export default function RegexTesterTool() {
   );
 
   const { matches, error, highlighted } = useMemo(() => {
-    if (!pattern.trim()) {
-      return {
-        matches: [],
-        error: null,
-        highlighted: escapeHtml(testStr),
-      };
+    const noHighlight = escapeHtml(testStr);
+    if (!pattern.trim()) return { matches: [], error: null, highlighted: noHighlight };
+
+    const { matches: found, error: err } = findMatches(pattern, flags, testStr);
+    if (err) return { matches: [], error: err, highlighted: noHighlight };
+
+    // Build highlighted HTML
+    let html = "";
+    let cursor = 0;
+    const colors = ["bg-[#1e3a5f] text-[#93c5fd]", "bg-[#2d1f0a] text-[#fbbf24]"];
+    let colorIdx = 0;
+    for (const match of found) {
+      if (match.index > cursor) html += escapeHtml(testStr.slice(cursor, match.index));
+      const cls = colors[colorIdx % colors.length];
+      html += `<mark class="${cls} rounded px-0.5">${escapeHtml(match.value)}</mark>`;
+      cursor = match.index + match.value.length;
+      colorIdx++;
     }
-    try {
-      const re = new RegExp(pattern, flags.includes("g") ? flags : flags + "g");
-      const allMatches: RegExpExecArray[] = [];
-      let m: RegExpExecArray | null;
-      let lastIndex = 0;
-      const safeRe = new RegExp(pattern, flags.includes("g") ? flags : flags + "g");
+    html += escapeHtml(testStr.slice(cursor));
 
-      while ((m = safeRe.exec(testStr)) !== null) {
-        allMatches.push(m);
-        if (m.index === safeRe.lastIndex) safeRe.lastIndex++;
-        if (allMatches.length > 500) break; // safety
-      }
-
-      // Build highlighted HTML
-      let html = "";
-      let cursor = 0;
-      const colors = ["bg-[#1e3a5f] text-[#93c5fd]", "bg-[#2d1f0a] text-[#fbbf24]"];
-      let colorIdx = 0;
-      for (const match of allMatches) {
-        if (match.index > cursor) {
-          html += escapeHtml(testStr.slice(cursor, match.index));
-        }
-        const cls = colors[colorIdx % colors.length];
-        html += `<mark class="${cls} rounded px-0.5">${escapeHtml(match[0])}</mark>`;
-        cursor = match.index + match[0].length;
-        colorIdx++;
-      }
-      html += escapeHtml(testStr.slice(cursor));
-
-      return { matches: allMatches, error: null, highlighted: html };
-    } catch (e) {
-      return {
-        matches: [],
-        error: e instanceof Error ? e.message : "Invalid regex",
-        highlighted: escapeHtml(testStr),
-      };
-    }
+    return { matches: found, error: null, highlighted: html };
   }, [pattern, flags, testStr]);
 
   const FLAG_OPTIONS = ["g", "i", "m", "s"];
@@ -244,14 +222,14 @@ export default function RegexTesterTool() {
                   {i + 1}
                 </span>
                 <code className="text-[#3b82f6] font-mono break-all">
-                  {m[0]}
+                  {m.value}
                 </code>
                 <span className="text-[#484f58] ml-auto shrink-0">
                   @{m.index}
                 </span>
-                {m.slice(1).some(Boolean) && (
+                {m.groups.some(Boolean) && (
                   <span className="text-[#8b949e]">
-                    [{m.slice(1).join(", ")}]
+                    [{m.groups.join(", ")}]
                   </span>
                 )}
               </div>
