@@ -64,14 +64,14 @@ If tools generate ad revenue, consider:
 ## Tech Stack
 
 ```
-Framework:       Next.js 14+ (App Router, Static Export)
+Framework:       Next.js 16 (App Router, Static Export)
 Language:        TypeScript
-Styling:         Tailwind CSS
-Deployment:      Cloudflare Pages (static export via `next export`)
+Styling:         Tailwind CSS v4
+Deployment:      Cloudflare Pages (static export via `output: 'export'`)
 Package Manager: pnpm
-Monorepo:        Turborepo (optional, only if complexity grows)
-Analytics:       Plausible (free self-hosted) or Cloudflare Web Analytics (free)
+Analytics:       Cloudflare Web Analytics ✅ (script in layout.tsx, token via NEXT_PUBLIC_CF_ANALYTICS_TOKEN)
 Ads:             Carbon Ads → EthicalAds (developer-focused, non-intrusive)
+Testing:         Vitest ✅ (142 tests across 11 test files)
 ```
 
 ### Why Next.js with Static Export?
@@ -332,36 +332,39 @@ No CI/CD setup needed — Cloudflare Pages has built-in Git integration. Connect
 ## 90-Day Execution Plan
 
 ### Week 1: Foundation
-- [ ] Scaffold Next.js project with static export config
-- [ ] Build shared layout: Navbar, Footer, ToolLayout wrapper
-- [ ] Create homepage with tool directory grid
-- [ ] Set up the "About" page (your experience/portfolio)
+- [x] Scaffold Next.js project with static export config
+- [x] Build shared layout: Navbar, Footer, ToolLayout wrapper
+- [x] Create homepage with tool directory grid
+- [x] Set up the "About" page (your experience/portfolio)
 - [ ] Deploy to Cloudflare Pages with custom domain
 - [ ] Set up Google Search Console + submit sitemap
-- [ ] Set up Cloudflare Web Analytics (free)
+- [x] Set up Cloudflare Web Analytics — script added to layout.tsx
+      → Add `NEXT_PUBLIC_CF_ANALYTICS_TOKEN=<your_token>` in Cloudflare Pages dashboard
+      → Get token: Cloudflare Dashboard → Web Analytics → Add Site
 
 ### Week 2–3: Wave 1 Tools
-- [ ] Build and ship: Cron Generator
-- [ ] Build and ship: JSON ↔ YAML Converter
-- [ ] Build and ship: JWT Decoder
-- [ ] Build and ship: Base64 Encode/Decode
-- [ ] Build and ship: Regex Tester
-- [ ] Cross-link all tools, verify SEO metadata
+- [x] Build and ship: Cron Generator
+- [x] Build and ship: JSON ↔ YAML Converter
+- [x] Build and ship: JWT Decoder
+- [x] Build and ship: Base64 Encode/Decode
+- [x] Build and ship: Regex Tester
+- [x] Cross-link all tools, verify SEO metadata
 
 ### Week 4–6: Wave 2 Tools
-- [ ] Chmod Calculator
-- [ ] Hash Generator
-- [ ] UUID Generator
-- [ ] URL Parser / Encoder
-- [ ] Timestamp Converter
+- [x] Chmod Calculator
+- [x] Hash Generator
+- [x] UUID Generator
+- [x] URL Parser / Encoder
+- [x] Timestamp Converter
+- [x] Unit test coverage (Vitest — 142 tests, all passing)
 - [ ] Apply for EthicalAds (low-bar alternative to Carbon while traffic grows)
 
 ### Week 7–8: Polish + Promote
 - [ ] Performance audit (Lighthouse 95+ on all pages)
 - [ ] Share individual tools on relevant subreddits, HN, Twitter/X
-- [ ] Add "Related Tools" sections to every page
-- [ ] Add content sections below each tool for SEO
-- [ ] Add PWA support (offline capability — tools work without internet)
+- [x] Add "Related Tools" sections to every page (wired via tools-registry.ts + ToolLayout)
+- [x] Add content sections below each tool for SEO (all 10 tools have explainers)
+- [x] Add PWA support — manifest.json, sw.js (stale-while-revalidate), icon.svg, PWARegister component
 
 ### Week 9–10: Wave 3 Tools
 - [ ] HTTP Status Code Reference

@@ -1,0 +1,47 @@
+{
+  "name": "DevTools Kit",
+  "short_name": "DevTools",
+  "description": "Fast, free developer tools. Cron, JWT, JSON↔YAML, Base64, Regex, and more. No signup required.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "categories": ["developer", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Cron Generator",
+      "url": "/tools/cron-generator",
+      "description": "Build cron expressions"
+    },
+    {
+      "name": "JWT Decoder",
+      "url": "/tools/jwt-decoder",
+      "description": "Decode JWT tokens"
+    },
+    {
+      "name": "JSON ↔ YAML",
+      "url": "/tools/json-yaml",
+      "description": "Convert JSON and YAML"
+    },
+    {
+      "name": "Base64",
+      "url": "/tools/base64",
+      "description": "Encode and decode Base64"
+    }
+  ]
+}

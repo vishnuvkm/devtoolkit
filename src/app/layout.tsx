@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PWARegister from "@/components/PWARegister";
 
 export const metadata: Metadata = {
   title: {
@@ -22,6 +24,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "DevTools Kit" }],
   creator: "DevTools Kit",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "DevTools Kit",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -46,6 +54,10 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#0d1117",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -57,6 +69,17 @@ export default function RootLayout({
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />
+        <PWARegister />
+        {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
+          <Script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({
+              token: process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN,
+            })}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );
