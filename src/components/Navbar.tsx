@@ -10,8 +10,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/tools/cron-generator", label: "Tools" },
+    { href: "/", label: "Tools" },
     { href: "/about", label: "About" },
   ];
 
@@ -34,12 +33,12 @@ export default function Navbar() {
           {navLinks.map(({ href, label }) => {
             const isActive =
               href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(href.replace("/tools/cron-generator", "/tools"));
+                ? pathname === "/" || pathname.startsWith("/tools")
+                : pathname === href;
             return (
               <Link
                 key={href}
-                href={href === "/tools/cron-generator" ? "/tools/cron-generator" : href}
+                href={href}
                 className={`text-sm transition-colors ${
                   isActive
                     ? "text-[#3b82f6] font-medium"
@@ -77,7 +76,7 @@ export default function Navbar() {
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
-              href={href === "/tools/cron-generator" ? "/tools/cron-generator" : href}
+              href={href}
               className="block py-2 text-sm text-[#8b949e] hover:text-[#e6edf3] transition-colors"
               onClick={() => setMobileOpen(false)}
             >

@@ -32,13 +32,11 @@ const principles = [
     icon: Globe,
     title: "Free, forever",
     description:
-      "All core tools are and will remain free. The site is sustained by a single, non-intrusive developer ad per page.",
+      "All core tools are and will remain free. Built and maintained by a single developer as a passion project.",
   },
 ];
 
 export default function AboutPage() {
-  const wave1Count = tools.filter((t) => t.wave === 1).length;
-
   return (
     <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       {/* Header */}
@@ -118,35 +116,6 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* Roadmap */}
-      <section className="mb-12">
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-[#484f58] mb-4">
-          Roadmap
-        </h2>
-        <div className="space-y-2">
-          {[
-            { wave: "Wave 1", count: wave1Count, label: "Core tools (live)", done: true },
-            { wave: "Wave 2", count: 5, label: "DevOps utilities", done: false },
-            { wave: "Wave 3", count: 5, label: "Networking & more", done: false },
-            { wave: "Wave 4", count: "∞", label: "Long-tail tools (ongoing)", done: false },
-          ].map(({ wave, count, label, done }) => (
-            <div
-              key={wave}
-              className="flex items-center gap-3 rounded border border-[#30363d] bg-[#161b22] px-4 py-3"
-            >
-              <div
-                className={`h-2 w-2 rounded-full shrink-0 ${
-                  done ? "bg-[#3fb950]" : "bg-[#30363d]"
-                }`}
-              />
-              <span className="text-xs font-medium text-[#484f58] w-16">{wave}</span>
-              <span className="text-xs text-[#e6edf3]">{label}</span>
-              <span className="ml-auto text-xs text-[#484f58]">{count} tools</span>
-            </div>
-          ))}
         </div>
       </section>
 
