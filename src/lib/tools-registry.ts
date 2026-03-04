@@ -246,6 +246,84 @@ export const tools: Tool[] = [
     targetKeyword: "word counter",
     relatedTools: ["regex-tester", "json-yaml", "base64"],
   },
+  {
+    slug: "lorem-ipsum",
+    name: "Lorem Ipsum Generator",
+    description:
+      "Generate Lorem Ipsum placeholder text by paragraphs, sentences, or word count. Output as plain text, HTML, or Markdown.",
+    longDescription:
+      "Generate Lorem Ipsum placeholder text in seconds. Choose how many paragraphs, sentences, or words you need, pick plain text, HTML, or Markdown output, and toggle the classic opening line. Fully deterministic and browser-based.",
+    category: "text",
+    wave: 4,
+    icon: "Type",
+    targetKeyword: "lorem ipsum generator",
+    relatedTools: ["word-counter", "regex-tester", "json-yaml"],
+  },
+  {
+    slug: "case-converter",
+    name: "Case Converter",
+    description:
+      "Convert text between UPPER CASE, lower case, Title Case, camelCase, snake_case, kebab-case, and 6 more formats instantly.",
+    longDescription:
+      "Paste any text and convert it to 10 different casing formats at once: UPPER CASE, lower case, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and slug. One-click copy for each.",
+    category: "text",
+    wave: 4,
+    icon: "CaseSensitive",
+    targetKeyword: "case converter online",
+    relatedTools: ["word-counter", "lorem-ipsum", "regex-tester"],
+  },
+  {
+    slug: "qr-code-generator",
+    name: "QR Code Generator",
+    description:
+      "Generate QR codes for URLs, text, or any content. Download as PNG or SVG. Free, no signup.",
+    longDescription:
+      "Generate QR codes entirely in your browser. Enter a URL or any text, choose size (128–512px) and error correction level, then download as PNG or SVG. No server, no data collected.",
+    category: "generators",
+    wave: 4,
+    icon: "QrCode",
+    targetKeyword: "qr code generator",
+    relatedTools: ["uuid-generator", "password-generator", "base64"],
+  },
+  {
+    slug: "unit-converter",
+    name: "Unit Converter",
+    description:
+      "Convert between units of length, weight, temperature, area, volume, speed, and data. Instant results.",
+    longDescription:
+      "Convert between 60+ units across 7 categories: length (mm to miles), weight (mg to tonnes), temperature (Celsius/Fahrenheit/Kelvin), area, volume, speed, and digital data (bytes to TB). All conversions happen instantly in your browser.",
+    category: "conversion",
+    wave: 4,
+    icon: "Ruler",
+    targetKeyword: "unit converter",
+    relatedTools: ["percentage-calculator", "timestamp-converter", "color-converter"],
+  },
+  {
+    slug: "age-calculator",
+    name: "Age Calculator",
+    description:
+      "Calculate exact age from a birthdate. Shows years, months, days, and days until next birthday.",
+    longDescription:
+      "Enter a birthdate and get the exact age in years, months, and days — plus total days lived, total weeks, and a countdown to the next birthday. Useful for forms, health records, and general curiosity.",
+    category: "math",
+    wave: 4,
+    icon: "Cake",
+    targetKeyword: "age calculator",
+    relatedTools: ["days-between-dates", "timestamp-converter", "percentage-calculator"],
+  },
+  {
+    slug: "days-between-dates",
+    name: "Days Between Dates",
+    description:
+      "Calculate the number of days between two dates. Shows working days, weeks, and a human-readable summary.",
+    longDescription:
+      "Pick a start and end date to see: total calendar days, working days (Monday–Friday), total weeks, and a friendly breakdown (e.g. '2 years, 3 months, 12 days'). Useful for project planning, contracts, and countdowns.",
+    category: "math",
+    wave: 4,
+    icon: "CalendarRange",
+    targetKeyword: "days between dates",
+    relatedTools: ["age-calculator", "timestamp-converter", "percentage-calculator"],
+  },
 ];
 
 export const toolsBySlug: Record<string, Tool> = Object.fromEntries(

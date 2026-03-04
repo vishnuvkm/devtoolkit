@@ -16,6 +16,12 @@ import {
   Container,
   Percent,
   AlignLeft,
+  Type,
+  CaseSensitive,
+  QrCode,
+  Ruler,
+  Cake,
+  CalendarRange,
   LucideIcon,
 } from "lucide-react";
 import { Tool, categoryLabels } from "@/lib/tools-registry";
@@ -37,6 +43,12 @@ const iconMap: Record<string, LucideIcon> = {
   Container,
   Percent,
   AlignLeft,
+  Type,
+  CaseSensitive,
+  QrCode,
+  Ruler,
+  Cake,
+  CalendarRange,
 };
 
 const categoryColors: Record<string, string> = {
