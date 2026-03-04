@@ -4,7 +4,8 @@ export type ToolCategory =
   | "networking"
   | "text"
   | "conversion"
-  | "generators";
+  | "generators"
+  | "math";
 
 export type ToolWave = 1 | 2 | 3 | 4;
 
@@ -205,6 +206,46 @@ export const tools: Tool[] = [
     targetKeyword: "docker compose validator",
     relatedTools: ["json-yaml", "chmod-calculator", "cron-generator"],
   },
+  // Wave 4
+  {
+    slug: "percentage-calculator",
+    name: "Percentage Calculator",
+    description:
+      "Calculate percentages instantly — find X% of Y, percentage change, and add or subtract a percentage from any value.",
+    longDescription:
+      "Four calculators in one: find what X% of a number is, determine what percentage one number is of another, calculate percentage increase or decrease between two values, and add or subtract a percentage from any base value.",
+    category: "math",
+    wave: 4,
+    icon: "Percent",
+    targetKeyword: "percentage calculator",
+    relatedTools: ["timestamp-converter", "color-converter", "uuid-generator"],
+  },
+  {
+    slug: "password-generator",
+    name: "Password Generator",
+    description:
+      "Generate strong, secure, random passwords. Customize length, character types, and exclude ambiguous characters.",
+    longDescription:
+      "Generate cryptographically secure passwords entirely in your browser using crypto.getRandomValues(). Choose length (8–128), toggle uppercase, lowercase, numbers, and symbols, exclude ambiguous characters, and bulk-generate up to 20 passwords at once.",
+    category: "generators",
+    wave: 4,
+    icon: "KeyRound",
+    targetKeyword: "password generator",
+    relatedTools: ["hash-generator", "uuid-generator", "jwt-decoder"],
+  },
+  {
+    slug: "word-counter",
+    name: "Word Counter",
+    description:
+      "Count words, characters, sentences, and paragraphs instantly. Get reading time and top keyword frequency.",
+    longDescription:
+      "Paste or type any text to get a full breakdown: word count, character count (with and without spaces), sentence count, paragraph count, estimated reading time, unique word count, and the top 5 most frequent meaningful words.",
+    category: "text",
+    wave: 4,
+    icon: "AlignLeft",
+    targetKeyword: "word counter",
+    relatedTools: ["regex-tester", "json-yaml", "base64"],
+  },
 ];
 
 export const toolsBySlug: Record<string, Tool> = Object.fromEntries(
@@ -232,4 +273,5 @@ export const categoryLabels: Record<ToolCategory, string> = {
   text: "Text & Regex",
   conversion: "Converters",
   generators: "Generators",
+  math: "Math & Calculators",
 };

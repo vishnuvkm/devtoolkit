@@ -182,24 +182,75 @@ Build these first. Each is a weekend project. Collectively they form a credible 
 | 14 | **Docker Compose Validator** | "docker compose validator" ~2K/mo | Lower volume but extremely sticky — no good tool exists online. Paste compose YAML, validate structure, flag common errors |
 | 15 | **SSL Certificate Checker** | "ssl checker" ~8K/mo | Enter domain → show cert details, chain, expiry. **Needs a serverless API (Cloudflare Worker)** — first tool requiring backend |
 
-### Wave 4 — Long Tail (Ongoing)
+### Wave 4 — Broad Audience Expansion (In Progress)
 
-Ideas for continued growth, one per week/fortnight:
+**Strategy:** Expand beyond dev/DevOps to capture massive general-audience search traffic.
+New category added: `"math"` → "Math & Calculators"
 
-- `.gitignore` Generator (template-based)
-- Diff / Text Compare Tool
-- Markdown Preview + Editor
-- IP Address Info Lookup
-- DNS Record Lookup
-- TOML ↔ JSON ↔ YAML converter
-- Password / Secret Generator
-- Encoding Converter (UTF-8, ASCII, URL)
-- HTML Entity Encoder/Decoder
-- JavaScript Object ↔ JSON converter
-- CSV ↔ JSON converter
-- Environment Variable Parser (.env ↔ export ↔ JSON)
-- Container Port Mapper (visual)
-- Kubernetes YAML Generator (basic deployment/service templates)
+#### Wave 4a — Complete ✅ (3 tools, 257 tests passing)
+
+| # | Tool | Target Keyword | Monthly Volume | Audience | Status |
+|---|------|---------------|---------------|---------|--------|
+| 15 | **Percentage Calculator** | "percentage calculator" | ~3,300,000 | Everyone | ✅ Done |
+| 16 | **Password Generator** | "password generator" | ~1,500,000 | Everyone | ✅ Done |
+| 17 | **Word Counter** | "word counter" | ~550,000 | Writers, Students | ✅ Done |
+
+#### Wave 4b — Planned (3 tools)
+
+| # | Tool | Target Keyword | Monthly Volume | Notes |
+|---|------|---------------|---------------|-------|
+| 18 | **QR Code Generator** | "qr code generator" | ~2,000,000 | Needs `qrcode` npm package (`pnpm add qrcode @types/qrcode`) |
+| 19 | **Case Converter** | "text case converter" | ~40,000 | UPPER, lower, Title, camelCase, snake_case, kebab-case, PascalCase. Zero new deps. |
+| 20 | **Lorem Ipsum Generator** | "lorem ipsum generator" | ~60,000 | N paragraphs/sentences/words, plain/HTML/Markdown output. Embedded word list, no deps. |
+
+#### Wave 4c — Planned (3 tools)
+
+| # | Tool | Target Keyword | Monthly Volume | Notes |
+|---|------|---------------|---------------|-------|
+| 21 | **Unit Converter** | "unit converter" | ~1,500,000 | Length, Weight, Temperature, Area, Volume, Speed, Data Size. Zero new deps. |
+| 22 | **Age Calculator** | "age calculator" | ~2,000,000 | Exact age, next birthday countdown, day of week born. Native Date math. |
+| 23 | **Random Number Generator** | "random number generator" | ~1,000,000 | Min/max range, dice roller (d4–d20), coin flip, list picker. crypto.getRandomValues(). |
+
+#### Wave 4d — Planned (3 tools)
+
+| # | Tool | Target Keyword | Monthly Volume | Notes |
+|---|------|---------------|---------------|-------|
+| 24 | **JSON Formatter** | "json formatter" | ~200,000 | Beautify/minify JSON, configurable indent, tree view. Different keyword from json-yaml. |
+| 25 | **CSV ↔ JSON** | "csv to json" | ~40,000 | Bidirectional, header detection. Pure JS CSV parser (no new deps). |
+| 26 | **Days Between Dates** | "days between dates" | ~200,000 | Date diff in days/weeks/months, business days toggle. Native Date math. |
+
+#### Wave 4e — Planned (Developer long-tail)
+
+| # | Tool | Target Keyword | Monthly Volume | Notes |
+|---|------|---------------|---------------|-------|
+| 27 | **Number Base Converter** | "decimal to binary" | ~90,000 | Bin/Oct/Dec/Hex + arbitrary base, binary nibble grouping. Zero new deps. |
+| 28 | **.gitignore Generator** | "gitignore generator" | ~20,000 | Curated templates: Node, Python, Go, Rust, Java, etc. Embedded JSON data. |
+| 29 | **Env Variable Parser** | "dotenv parser" | ~8,000 | .env ↔ `export VAR=val` ↔ JSON. Round-trip conversion. |
+| 30 | **HTML Entity Encoder** | "html encode" | ~20,000 | Encode/decode HTML special characters. |
+
+### Wave 5 — Rich UI Tools (Planned)
+
+Requires additional npm packages or more complex UI:
+
+| # | Tool | Target Keyword | Volume | Package Needed |
+|---|------|---------------|--------|---------------|
+| 31 | **Text Diff / Compare** | "text compare online" | ~30,000 | `diff` package (`pnpm add diff @types/diff`) |
+| 32 | **Markdown Editor** | "markdown preview" | ~25,000 | `marked` package (`pnpm add marked`) |
+| 33 | **Meta Tag Generator** | "meta tag generator" | ~20,000 | Generates SEO/OG/Twitter Card tags. Zero deps. |
+| 34 | **Pomodoro Timer** | "pomodoro timer" | ~250,000 | Uses localStorage for persistence. Zero deps. |
+| 35 | **Aspect Ratio Calculator** | "aspect ratio calculator" | ~50,000 | Scale dimensions. Zero deps. |
+
+### Wave 6 — Exploration (Ideas for Future Research)
+
+- **Roman Numeral Converter** — ~90K/mo, students, surprise viral potential
+- **SQL Formatter** — ~50K/mo, needs sql-formatter lib
+- **Image to Base64** — ~30K/mo (dedicate a page; base64 lib already exists)
+- **Unicode / Code Point Lookup** — ~150K/mo, interactive character table
+- **TOML ↔ JSON ↔ YAML** — dev niche, no good tool exists
+- **Password Strength Checker** — sister tool to Password Generator
+- **IP Address Info** — requires Cloudflare Worker (server-side)
+- **DNS Record Lookup** — requires Cloudflare Worker (server-side)
+- **SSL Certificate Checker** — requires Cloudflare Worker (server-side)
 
 ---
 
@@ -377,7 +428,41 @@ No CI/CD setup needed — Cloudflare Pages has built-in Git integration. Connect
 - [ ] Apply for Carbon Ads (if 10K+ pageviews reached)
 - [ ] Set up email capture for optional newsletter
 - [ ] Review Search Console data — which tools rank? Double down
-- [ ] Plan Wave 4 tools based on actual traffic data
+
+### Wave 4a: Broad Audience Expansion — Complete ✅
+- [x] Percentage Calculator — 3.3M/mo keyword, `"math"` category, 26 tests
+- [x] Password Generator — 1.5M/mo keyword, `crypto.getRandomValues()`, strength meter, 21 tests
+- [x] Word Counter — 550K/mo keyword, live stats, top words, platform limits, 15 tests
+- [x] Added `"math"` category to tools-registry + categoryLabels
+- [x] 257 total tests passing (17 test files)
+
+### Wave 4b: Next Sprint (Planned)
+- [ ] QR Code Generator — 2M/mo — `pnpm add qrcode @types/qrcode`
+- [ ] Case Converter — 40K/mo — zero new deps
+- [ ] Lorem Ipsum Generator — 60K/mo — zero new deps
+
+### Wave 4c: (Planned)
+- [ ] Unit Converter — 1.5M/mo — 7 categories, zero new deps
+- [ ] Age Calculator — 2M/mo — native Date math
+- [ ] Random Number Generator — 1M/mo — dice roller, coin flip
+
+### Wave 4d: (Planned)
+- [ ] JSON Formatter & Minifier — 200K/mo
+- [ ] CSV ↔ JSON Converter — 40K/mo
+- [ ] Days Between Dates — 200K/mo
+
+### Wave 4e: Dev Long-Tail (Planned)
+- [ ] Number Base Converter — 90K/mo (decimal↔binary↔hex↔octal)
+- [ ] .gitignore Generator — 20K/mo
+- [ ] Env Variable Parser (.env ↔ export ↔ JSON) — 8K/mo
+- [ ] HTML Entity Encoder/Decoder — 20K/mo
+
+### Wave 5: Rich UI Tools (Planned — needs additional packages)
+- [ ] Text Diff / Compare — 30K/mo — needs `diff` package
+- [ ] Markdown Editor + Preview — 25K/mo — needs `marked` package
+- [ ] Meta Tag Generator — 20K/mo — OG + Twitter Card preview
+- [ ] Pomodoro Timer — 250K/mo — localStorage persistence
+- [ ] Aspect Ratio Calculator — 50K/mo
 
 ---
 

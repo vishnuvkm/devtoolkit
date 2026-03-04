@@ -13,6 +13,9 @@ import {
   Globe,
   Network,
   Palette,
+  Container,
+  Percent,
+  AlignLeft,
   LucideIcon,
 } from "lucide-react";
 import { Tool, categoryLabels } from "@/lib/tools-registry";
@@ -31,15 +34,19 @@ const iconMap: Record<string, LucideIcon> = {
   Globe,
   Network,
   Palette,
+  Container,
+  Percent,
+  AlignLeft,
 };
 
 const categoryColors: Record<string, string> = {
-  encoding: "text-[#f0883e] bg-[#2d1f0a]",
-  devops: "text-[#3b82f6] bg-[#0d2145]",
+  encoding:   "text-[#f0883e] bg-[#2d1f0a]",
+  devops:     "text-[#3b82f6] bg-[#0d2145]",
   networking: "text-[#a5d6ff] bg-[#0d1e35]",
-  text: "text-[#bc8cff] bg-[#1e0d35]",
+  text:       "text-[#bc8cff] bg-[#1e0d35]",
   conversion: "text-[#3fb950] bg-[#0d2a1a]",
   generators: "text-[#d29922] bg-[#2a1f0d]",
+  math:       "text-[#f472b6] bg-[#2d0a20]",
 };
 
 interface ToolCardProps {
