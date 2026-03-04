@@ -1,6 +1,6 @@
 # DevTools Kit
 
-A fast, free, open-source collection of developer and everyday tools. Built with Next.js, TypeScript, and Tailwind CSS. Runs entirely in the browser — no server, no signup, no data collection.
+A fast, free collection of developer and everyday tools. Built with Next.js, TypeScript, and Tailwind CSS. Runs entirely in the browser — no server, no signup, no data collection.
 
 **Live:** https://devtoolkit.dev  
 **Stack:** Next.js 16 · TypeScript · Tailwind CSS v4 · Vitest · pnpm  
